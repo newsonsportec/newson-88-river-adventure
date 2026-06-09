@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Newson Sportec #88 River Adventure</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at top left, rgba(255, 153, 0, 0.16), transparent 35%),
+        linear-gradient(135deg, #090909 0%, #151515 45%, #050505 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 7%;
+      background: rgba(0, 0, 0, 0.84);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 122, 0, 0.35);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    .brand span:first-child {
+      font-size: 1.35rem;
+    }
+
+    .brand span:last-child {
+      color: #ff8a00;
+      font-size: 0.82rem;
+      letter-spacing: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      color: #dddddd;
+    }
+
+    .nav-links a:hover {
+      color: #ff8a00;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 38px;
+      padding: 70px 7% 50px;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.7rem, 7vw, 6.8rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      font-weight: 1000;
+      margin-bottom: 22px;
+    }
+
+    .orange {
+      color: #ff7a00;
+    }
+
+    .hero-text p {
+      max-width: 760px;
+      color: #d8d8d8;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      margin-bottom: 28px;
+    }
+
+    .tagline {
+      display: inline-block;
+      padding: 13px 20px;
+      background: #ff3d00;
+      color: #ffffff;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transform: skew(-8deg);
+      box-shadow: 0 12px 28px rgba(255, 61, 0, 0.25);
+    }
+
+    .hero-card {
+      border: 1px solid rgba(255, 122, 0, 0.45);
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-card img {
+      width: 100%;
+      display: block;
+    }
+
+    section {
+      padding: 80px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 4rem);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .section-title p {
+      color: #cfcfcf;
+      max-width: 820px;
+      margin: 0 auto;
+      font-size: 1.08rem;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .story-box {
+      padding: 28px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .story-box h3 {
+      color: #ff8a00;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .story-box p {
+      color: #dddddd;
+    }
+
+    .video-frame {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 12px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #ff8a00, #ff2d00, #111111);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.48);
+    }
+
+    video {
+      width: 100%;
+      display: block;
+      border-radius: 20px;
+      background: #000000;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery figure {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #111111;
+      min-height: 260px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.45s ease, filter 0.45s ease;
+    }
+
+    .gallery figure:hover img {
+      transform: scale(1.06);
+      filter: brightness(1.08);
+    }
+
+    figcaption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 16px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.86));
+      color: #ffffff;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      text-align: center;
+    }
+
+    .feature {
+      padding: 26px 18px;
+      border: 1px solid rgba(255, 122, 0, 0.34);
+      border-radius: 20px;
+      background: rgba(0,0,0,0.35);
+    }
+
+    .feature .icon {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 {
+      color: #ff8a00;
+      text-transform: uppercase;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: #cccccc;
+      font-size: 0.95rem;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 90px 7%;
+      background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.86)),
+        url("images/river-back-angle.png") center/cover no-repeat;
+      border-top: 1px solid rgba(255, 122, 0, 0.28);
+      border-bottom: 1px solid rgba(255, 122, 0, 0.28);
+    }
+
+    .cta h2 {
+      font-size: clamp(2.4rem, 5vw, 5rem);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    .cta p {
+      color: #eeeeee;
+      max-width: 850px;
+      margin: 0 auto 28px;
+      font-size: 1.15rem;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 1px;
+      border: 1px solid #ff8a00;
+    }
+
+    .btn.primary {
+      background: #ff5a00;
+      color: #ffffff;
+    }
+
+    .btn.secondary {
+      background: rgba(0,0,0,0.45);
+      color: #ffb45c;
+    }
+
+    footer {
+      padding: 34px 7%;
+      text-align: center;
+      color: #aaaaaa;
+      background: #030303;
+      border-top: 1px solid rgba(255, 122, 0, 0.25);
+    }
+
+    footer strong {
+      color: #ffffff;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 52px;
+      }
+
+      .story-grid,
+      .gallery,
+      .features {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .top-bar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .story-grid,
+      .gallery,
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 60px 6%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="top-bar">
+    <a class="brand" href="#home">
+      <span>Newson Sportec</span>
+      <span>#88 River Adventure</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#story">Story</a>
+      <a href="#reel">Reel</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#spirit">Spirit</a>
+    </nav>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="hero-text">
+      <h1>#88 River<br><span class="orange">Adventure</span></h1>
+
+      <p>
+        Summertime. Cool water. Rocky river trails. The #88 Newson Sportec rider
+        leads a careful, exciting dirt bike ride with friends from different teams.
+        They cross small rivers, control the bike through wet rocks, and enjoy the
+        adventure spirit of off-road riding.
+      </p>
+
+      <div class="tagline">Ride. Build. Perform.</div>
+    </div>
+
+    <div class="hero-card">
+      <img src="images/hero-river-front.png" alt="Newson Sportec #88 rider crossing a rocky river with friends" />
+    </div>
+  </main>
+
+  <section id="story">
+    <div class="section-title">
+      <h2>The Adventure Spirit</h2>
+      <p>
+        This website shares the feeling of summer river riding: speed, control,
+        teamwork, cool water, and respect for the rocks under the tires.
+      </p>
+    </div>
+
+    <div class="story-grid">
+      <article class="story-box">
+        <h3>Cool Water</h3>
+        <p>
+          The river is shallow, but every splash makes the summer ride feel fresh,
+          exciting, and full of energy.
+        </p>
+      </article>
+
+      <article class="story-box">
+        <h3>Careful Control</h3>
+        <p>
+          Rocks in the water make the trail challenging. The riders stay balanced,
+          choose the right line, and keep moving forward safely.
+        </p>
+      </article>
+
+      <article class="story-box">
+        <h3>Friends & Freedom</h3>
+        <p>
+          The #88 rider enjoys the ride with friends from different teams. They
+          share the trail, the challenge, and the fun.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="reel">
+    <div class="section-title">
+      <h2>10-Second Reel</h2>
+      <p>
+        Watch the #88 Newson Sportec rider cross the river with friends through
+        water splashes, rocky paths, and cinematic off-road energy.
+      </p>
+    </div>
+
+    <div class="video-frame">
+      <video controls playsinline poster="images/river-hero-close.png">
+        <source src="videos/newson-sportec-88-river-reel.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="section-title">
+      <h2>Image Gallery</h2>
+      <p>
+        Different camera angles show the same adventure: side views, back views,
+        sky views, and low river angles.
+      </p>
+    </div>
+
+    <div class="gallery">
+      <figure>
+        <img src="images/hero-river-front.png" alt="#88 rider front angle river crossing" />
+        <figcaption>Front River Action</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/river-back-angle.png" alt="#88 rider rear angle crossing river" />
+        <figcaption>Back Angle</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/river-left-angle.png" alt="#88 rider left-side river crossing" />
+        <figcaption>Left Angle</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/river-right-angle.png" alt="#88 rider right-side river crossing" />
+        <figcaption>Right Angle</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/river-sky-angle.png" alt="Sky angle of riders crossing rocky river" />
+        <figcaption>Sky View</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/river-low-angle.png" alt="Low river angle with dirt bike splash" />
+        <figcaption>Low River View</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/river-group-back.png" alt="Group riding away through river canyon" />
+        <figcaption>Group Direction</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/river-hero-close.png" alt="Close hero image of Newson Sportec rider" />
+        <figcaption>Hero Close-Up</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/river-extra.png" alt="Extra river adventure image" />
+        <figcaption>Adventure Moment</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="spirit">
+    <div class="section-title">
+      <h2>Built for the River Trail</h2>
+      <p>
+        The spirit of #88 is not only speed. It is control, teamwork, and the
+        confidence to keep riding through water, rocks, and summer adventure.
+      </p>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="icon">⚡</div>
+        <h3>Max Power</h3>
+        <p>Strong acceleration through wet and rocky terrain.</p>
+      </div>
+
+      <div class="feature">
+        <div class="icon">⚙️</div>
+        <h3>Precision Control</h3>
+        <p>Careful balance when the river hides rocks under the water.</p>
+      </div>
+
+      <div class="feature">
+        <div class="icon">⛰️</div>
+        <h3>Any Terrain</h3>
+        <p>From canyon trails to shallow river crossings.</p>
+      </div>
+
+      <div class="feature">
+        <div class="icon">🛡️</div>
+        <h3>Trusted Performance</h3>
+        <p>Ride with confidence, focus, and adventure spirit.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Ride the Cool Water</h2>
+    <p>
+      Small rivers. Hidden rocks. Summer fun. The #88 Newson Sportec rider and his
+      friends move forward together — carefully, confidently, and with pure off-road joy.
+    </p>
+
+    <div class="button-row">
+      <a class="btn primary" href="#reel">Watch Reel</a>
+      <a class="btn secondary" href="#gallery">View Gallery</a>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>NEWSON SPORTEC</strong> — RIDE. BUILD. PERFORM.</p>
+    <p>Copyright © 2026 Newson Sportec. All rights reserved.</p>
+  </footer>
+</body>
+</html>
