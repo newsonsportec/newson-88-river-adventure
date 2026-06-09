@@ -118,7 +118,6 @@
       font-weight: 600;
     }
 
-    /* RIDE. BUILD. PERFORM. button is 2x bigger */
     .tagline {
       display: inline-block;
       padding: 32px 52px;
@@ -213,6 +212,16 @@
       display: block;
       border-radius: 22px;
       background: #000000;
+    }
+
+    .autoplay-note {
+      text-align: center;
+      color: #ffb45c;
+      font-size: 1.2rem;
+      margin-top: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .gallery {
@@ -325,7 +334,6 @@
       flex-wrap: wrap;
     }
 
-    /* WATCH REEL and VIEW GALLERY buttons are 2x bigger */
     .btn {
       display: inline-block;
       padding: 32px 52px;
@@ -559,11 +567,13 @@
     </div>
 
     <div class="video-frame">
-      <video controls playsinline poster="river-hero-close.png">
+      <video autoplay muted loop playsinline poster="river-hero-close.png">
         <source src="newson-sportec-88-river-reel.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
+
+    <p class="autoplay-note">Auto playing • Muted • Looping reel</p>
   </section>
 
   <section id="gallery">
