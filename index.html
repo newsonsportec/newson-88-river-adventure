@@ -198,19 +198,20 @@
       font-weight: 600;
     }
 
+    /* REEL SIZE REVISED x2 BIGGER */
     .video-frame {
-      max-width: 560px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 12px;
-      border-radius: 30px;
+      padding: 20px;
+      border-radius: 34px;
       background: linear-gradient(135deg, #ff8a00, #ff2d00, #111111);
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 40px 110px rgba(0, 0, 0, 0.58);
     }
 
     video {
       width: 100%;
       display: block;
-      border-radius: 22px;
+      border-radius: 26px;
       background: #000000;
     }
 
@@ -419,6 +420,11 @@
         font-size: 1.7rem;
         padding: 26px 42px;
       }
+
+      .video-frame {
+        max-width: 95%;
+        padding: 16px;
+      }
     }
 
     @media (max-width: 650px) {
@@ -472,6 +478,16 @@
       .btn {
         font-size: 1.25rem;
         padding: 20px 30px;
+      }
+
+      .video-frame {
+        max-width: 100%;
+        padding: 10px;
+        border-radius: 22px;
+      }
+
+      video {
+        border-radius: 16px;
       }
     }
   </style>
