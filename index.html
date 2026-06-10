@@ -214,16 +214,6 @@
       background: #000000;
     }
 
-    .autoplay-note {
-      text-align: center;
-      color: #ffb45c;
-      font-size: 1.2rem;
-      margin-top: 18px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
     .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -567,13 +557,11 @@
     </div>
 
     <div class="video-frame">
-      <video autoplay muted loop playsinline poster="river-hero-close.png">
+      <video id="riverReel" autoplay loop playsinline controls poster="river-hero-close.png">
         <source src="newson-sportec-88-river-reel.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
-
-    <p class="autoplay-note">Auto playing • Muted • Looping reel</p>
   </section>
 
   <section id="gallery">
@@ -687,5 +675,16 @@
     <p><strong>NEWSON SPORTEC</strong> — RIDE. BUILD. PERFORM.</p>
     <p>Copyright © 2026 Newson Sportec. All rights reserved.</p>
   </footer>
+
+  <script>
+    const riverReel = document.getElementById("riverReel");
+
+    riverReel.volume = 1.0;
+    riverReel.muted = false;
+
+    riverReel.play().catch(() => {
+      console.log("Browser blocked sound autoplay. User may need to click play once.");
+    });
+  </script>
 </body>
 </html>
